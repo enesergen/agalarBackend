@@ -1,8 +1,5 @@
 const express = require("express");
-const { all } = require("express/lib/application");
-const res = require("express/lib/response");
 const { json } = require("express/lib/response");
-const { add } = require("nodemon/lib/rules");
 const app = express();
 const pool = require("./db");
 
