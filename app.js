@@ -3,6 +3,8 @@ const { json } = require("express/lib/response");
 const app = express();
 const pool = require("./db");
 
+const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 //*************************News*************************
 //create news
@@ -860,6 +862,6 @@ app.put("facultySlides/:id", async(req, res) => {
     }
 });
 
-app.listen("3000", () => {
+app.listen(PORT, () => {
     console.log("Server çalışıyor.")
 });
