@@ -9,6 +9,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Base Route
+app.get('/', (req, res) => {
+    return res.send('<h2 style="text-align:center">Agalar API v1.0</h2>');
+});
+
 //*************************News*************************
 //create news
 app.post("/addNews", async(req, res) => {
