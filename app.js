@@ -2,10 +2,13 @@ const express = require("express");
 const { json } = require("express/lib/response");
 const app = express();
 const pool = require("./db");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
+
 //*************************News*************************
 //create news
 app.post("/addNews", async(req, res) => {
@@ -863,5 +866,5 @@ app.put("facultySlides/:id", async(req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Server çalışıyor.")
+    console.log(`Server ${PORT} portunda çalışıyor.`)
 });
