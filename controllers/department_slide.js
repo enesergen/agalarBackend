@@ -5,7 +5,7 @@ const db = require("../config/db");
 router.post("/", async (req, res) => {
     try {
         const { fid, url, slideOrder } = req.body;
-        const addFacultySlide = await db.query("insert into faculty_slides (fid,url,slideorder) values($1,$2,$3) returning *", [fid, url, slideOrder]);
+        const slides = await db.query("insert into departmentslides (fid,url,slideorder) values($1,$2,$3) returning *", [fid, url, slideOrder]);
         return res.json({ result: true, data: [] });
 
     } catch (error) {
@@ -14,12 +14,12 @@ router.post("/", async (req, res) => {
     }
 });
 
-//get all faculty slides
-router.get("/:fid", async (req, res) => {
+//get department slides by did
+router.get("/:did", async (req, res) => {
     try {
-        const { fid } = req.params;
-        const FacultySlides = await db.query("select * from faculty_slides where fid=$1 ORDER BY slideorder", [fid]);
-        return res.json({ result: true, data: FacultySlides.rows });
+        const { did } = req.params;
+        const slides = await db.query("select * from departmentslides where did=$1 ORDER BY slideorder", [did]);
+        return res.json({ result: true, data: slides.rows });
     } catch (error) {
         console.log(error.message);
         return res.json({ result: false, data: [] });
@@ -30,7 +30,7 @@ router.get("/:fid", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const deleteFacultySlide = await db.query("delete from faculty_slides where id=$1", [id]);
+        const slides = await db.query("delete from departmentslides where id=$1", [id]);
         return res.json({ result: true, data: [] });
     } catch (error) {
         console.log(error.message);
@@ -43,7 +43,7 @@ router.put("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const { fid, url, slideOrder } = req.body;
-        const updateSlide = await db.query("update faculty_slides set fid=$1, url=$2, slideorder=$3 where id=$4", [fid, url, slideOrder, id]);
+        const slides = await db.query("update departmentslides set fid=$1, url=$2, slideorder=$3 where id=$4", [fid, url, slideOrder, id]);
         return res.json({ result: true, data: [] });
     } catch (error) {
         console.log(error.message);

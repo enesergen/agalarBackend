@@ -10,7 +10,7 @@ const campuse = require('../controllers/campuse');
 const faculty = require('../controllers/faculty');
 const department = require('../controllers/department');
 const slide = require('../controllers/slide');
-const faculty_slide = require('../controllers/faculty_slide');
+const department_slide = require('../controllers/department_slide');
 
 router.get('/', (req, res) => res.send('<h2 style="text-align:center">Agalar API v1.0</h2>'));
 router.use('/news', news);
@@ -24,6 +24,6 @@ router.use('/campuse', campuse);
 router.use('/faculty', faculty);
 router.use('/department', department);
 router.use('/slide', slide);
-router.use('/faculty-slide', faculty_slide);
+router.use('/department-slide', department_slide);
 
 module.exports = router;
